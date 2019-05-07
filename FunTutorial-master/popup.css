@@ -1,18 +1,64 @@
 body {
   height: 100vh;
   width: 300px;
-   position: relative;
+  position: relative;
+  background-color: #AAAAAA;
 }
 
 .videos {
   padding-top: 120px;
+  
 }
-
+h2 {
+text-align: center;
+position: relative;
+}
+.testify {
+  background-color: red;
+  left: 25px;
+  position: relative;
+  width: 100%;
+  padding: 10px;
+  left: 0px;
+  color: white;
+  border-style: solid;
+  border-width: 2px;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+}
+.Alpha {
+  background-color: red;
+  left: 25px;
+  position: relative;
+  width: 100%;
+  padding: 10px;
+  left: 0px;
+  color: white;
+  border-style: solid;
+  border-width: 2px;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+}
+.Republican {
+  background-color: red;
+  left: 25px;
+  padding: 10px;
+  position: relative;
+  width: 100%;
+  left: 0px;
+  color: white;
+  border-style: solid;
+  border-width: 2px;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+}
 .dropbtn {
-  border-radius: 25px;
   position: absolute;
   left: 95px;
-  background-color: #3498DB;
+  background-color: #0074D9;
   color: white;
   padding: 16px;
   font-size: 16px;
@@ -54,9 +100,99 @@ body {
 .dropbtn:focus {outline:0;}
 
 p {
+text-align: center;
+background-color: #0074D9;
 position: relative;
-top: 100px;
-left: 100px;
+top: 140px;
 font-size: 20px;
+color: white;
+padding: 3px;
 font-family: 'Work Sans', sans-serif;
+}
+.youtube {
+    background-color: #000;
+    margin-bottom: 30px;
+    position: relative;
+    padding-top: 56.25%;
+    overflow: hidden;
+    cursor: pointer;
+}
+.youtube img {
+    width: 100%;
+    top: -16.84%;
+    left: 0;
+    opacity: 0.7;
+}
+.youtube .play-button {
+    width: 90px;
+    height: 60px;
+    background-color: #333;
+    box-shadow: 0 0 30px rgba( 0,0,0,0.6 );
+    z-index: 1;
+    opacity: 0.8;
+    border-radius: 6px;
+}
+.youtube .play-button:before {
+    content: "";
+    border-style: solid;
+    border-width: 15px 0 15px 26.0px;
+    border-color: transparent transparent transparent #fff;
+}
+.youtube img,
+.youtube .play-button {
+    cursor: pointer;
+}
+.youtube img,
+.youtube iframe,
+.youtube .play-button,
+.youtube .play-button:before {
+    position: absolute;
+}
+.youtube .play-button,
+.youtube .play-button:before {
+    top: 50%;
+    left: 50%;
+    transform: translate3d( -50%, -50%, 0 );
+}
+.youtube iframe {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+.loading {
+  position: absolute;
+  left: 70px;
+  top: 300px;
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }

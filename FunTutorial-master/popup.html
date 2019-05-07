@@ -4,18 +4,29 @@
     <link rel="stylesheet" href="popup.css">
   </head>
 <header>
+<div class="storage">
+	<h2 id="community">Welcome, Please Select a Group</h2> 
+	</div>
 	
 	<div class="dropdown">
   <button id="Button" class="dropbtn">Community</button>
   <div id="myDropdown" class="dropdown-content">
-    <button id="testify">Testify Hip Hop</button>
-    <button id="#about">Alpha Test</button>
-    <button id="#contact">OC Republicans</button>
+    <button id="testify" class="testify">Testify Hip Hop</button>
+    <button id="Alpha" class="Alpha"> Alpha Test</button>
+    <button id="Republican" class="Republican">OC Republicans</button>
   </div>
 </div>
 	<p>Top Videos</p>
 	<div class="videos" id="parentId"></div>
+	<div class="loader" id="parentIds">
+	</div>	
+		
+    <script src="loading.js"></script>
     <script src="popup.js"></script>
+    <script src="video.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+
     </div>
 </div></header>
 </html>
