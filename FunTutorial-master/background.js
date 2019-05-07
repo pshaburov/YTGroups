@@ -12,19 +12,23 @@ var database = firebase.database();
 var number = 0;
 var user = Math.floor((Math.random() * 1000000) + 1);
 var userString = user.toString(8) + "/";
-
 var childData = [];
 
-var youtuberef = firebase.database().ref("Youtube/")
-function readNumberOne() {
+var youtuberef = firebase.database()
+function readNumberOne(datas) {
 
-firebase.database().ref().child("First").on('value', function(snapshot) {
+childData = [];
+
+
+firebase.database().ref().child(datas).on('value', function(snapshot) {
     snapshot.forEach(function(child) {
-   		 var revisedVal = child.val().replace("watch?v=", "embed/");
-       childData.push(revisedVal);
+         childData.push(child.val());
     	});
+	});
+	clear('color');
+	console.log(childData);
 
-    chrome.storage.sync.set({color: childData}, function() {
+    chrome.storage.local.set({color: childData}, function() {
       console.log('The color is green.');
     });
     chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
@@ -36,17 +40,69 @@ firebase.database().ref().child("First").on('value', function(snapshot) {
             actions: [new chrome.declarativeContent.ShowPageAction()]
       }]);
     });
-	});
+    
+
+}
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    console.log(sender.tab ?
+                "from a content script:" + sender.tab.url :
+                "from the extension");
+    if (request.greeting == "hello")
+      clear('color');
+      onLoad();
+      sendResponse({farewell: "goodbye"});
+     
+    
+  });
+
+function clear(key) {
+chrome.storage.local.remove(key,function(){
+ var error = chrome.runtime.lastError;
+    if (error) {
+        console.error(error);
+    }
+});
+
+}
+function onLoad() {
+ chrome.storage.local.get('group', function(data) {
+ 	 var data = data.group;
+ 	 if(data == "Youtube") {
+ 	 data = "First";
+ 	 } else {
+ 	 data = data + "First"
+ 	 }
+	
+ 	 if (typeof data != "undefined") {
+ 	 	readNumberOne(data);
+ 	 }
+ 	 });
 }
 
-window.onload = function() {
- 	 readNumberOne();
-}
-
- 
+ function debug(value) {
+   chrome.storage.local.set({debug: value}, function() {
+      console.log('The color is green.');
+    });
+    chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
+      chrome.declarativeContent.onPageChanged.addRules([{
+        conditions: [new chrome.declarativeContent.PageStateMatcher({
+          pageUrl: {hostEquals: 'developer.chrome.com'},
+        })
+        ],
+            actions: [new chrome.declarativeContent.ShowPageAction()]
+      }]);
+    });
+ }
 function writeUserData(link) {
-  youtuberef.push({
-    link: link,
+//optimized for multiple groups
+	var group = "";
+  chrome.storage.local.get('group', function(data) {
+  	group = data.group;
+  	if (data.group != "") {
+  		youtuberef.ref(group).push({
+  	  link: link,
+ 	 });
+  }
   });
 }
 
